@@ -4,7 +4,9 @@ class HelloWorld
   def call(env)
     case env['REQUEST_PATH']
     when '/'
-      ['200', {"Content-Type" => 'text/html'}, ["<b>Hello World!</b>"]]
+      template = File.read("views/index.erb")
+      content = ERB.new(template)
+      ['200', {"Content-Type" => 'text/html'}, [content.result]]
     when '/advice'
       ['200', {"Content-Type" => 'text/plain'}, [Advice.new.sample]]
     else
