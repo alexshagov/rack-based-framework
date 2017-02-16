@@ -4,7 +4,7 @@ class HelloWorld
   def call(env)
     case env['REQUEST_PATH']
     when '/'
-      ['200', {"Content-Type" => 'text/plain'}, ["Hello World!"]]
+      ['200', {"Content-Type" => 'text/html'}, ["<b>Hello World!</b>"]]
     when '/advice'
       ['200', {"Content-Type" => 'text/plain'}, [Advice.new.sample]]
     else
